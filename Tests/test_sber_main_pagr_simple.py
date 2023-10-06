@@ -3,6 +3,7 @@ import Steps.assert_steps as assert_steps
 import time
 import Steps.blur_steps as blur_steps
 from selenium.webdriver.common.keys import Keys
+import Steps.elements_reports as elements_reports
 
 def test_sber_main_page_dz_2():
     # Иницилизируем webdriver
@@ -171,3 +172,16 @@ def test_sber_main_page_dz_4():
     driver.switch_to.window(driver.window_handles[1])
     # Ожидаем 5 секунд для прорисовки
     time.sleep(5)
+
+# Тест подсчета элементов
+def test_sber_main_page_dz_5():
+    # Иницилизируем webdriver
+    driver = initial.webdriver_init()
+    # Поиск элементов офисы
+    offices = driver.find_elements_by_xpath("//a[text()='Офисы']")
+    # Выведем все найденные элементы
+    elements_reports.elements_reports(offices)
+    # Поиск элемента банкоматы
+    cashoffice = driver.find_elements_by_xpath("//a[text()='Банкоматы']")
+    # Выведем все найденные элементы
+    elements_reports.elements_reports(cashoffice)
